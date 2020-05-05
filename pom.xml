@@ -94,7 +94,7 @@
                 <version>0.9.11</version>
                 <configuration>
                     <from>
-                        <image>registry.cn-hangzhou.aliyuncs.com/docker_respo/java8</image>
+                        <image>registry.cn-hangzhou.aliyuncs.com/docker_respo/java8:1.0</image>
                     </from>
                     <to>
                         <image>springboot-demo-${label}:latest</image>
