@@ -1,5 +1,6 @@
 package com.example.test;
 
+import com.example.test.entity.HelloBean;
 import com.example.test.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

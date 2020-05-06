@@ -1,5 +1,6 @@
-package com.example.test;
+package com.example.test.entity;
 
+import com.example.test.MyInterface;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class HelloBean implements SmartInitializingSingleton, SmartLifecycle, InitializingBean,
-        DisposableBean,MyInterface, BeanNameAware, ApplicationContextAware
+        DisposableBean, MyInterface, BeanNameAware, ApplicationContextAware
 {
 
     private final Log logger = LogFactory.getLog(getClass());
