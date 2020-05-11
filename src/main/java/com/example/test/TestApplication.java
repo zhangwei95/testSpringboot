@@ -1,7 +1,6 @@
 package com.example.test;
 
 import com.example.test.entity.HelloBean;
-import com.example.test.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -41,8 +40,10 @@ public class TestApplication {
                         : configServerStatus);
 
         HelloBean helloBean =(HelloBean)run.getBean("helloBean");
+        if(helloBean != null){
+            helloBean.sayHello();
+        }
 
-        helloBean.sayHello();
 
         logger.trace("I am trace log.");
         logger.debug("I am debug log.");
