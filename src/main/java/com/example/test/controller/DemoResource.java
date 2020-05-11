@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -33,8 +35,9 @@ public class DemoResource {
             });
     int limit=2;
     int unit=1000;
-
+    private static final int M=1024*1024;
     RateLimiter rateLimiter=RateLimiter.create(10);
+    List linklist=new LinkedList<>();
     @PostMapping("/testLong2LocalDateTime")
     public void reportTask(@RequestBody @Valid Long2LocalDateTime dto) {
         LOGGER.error(dto.toString());
@@ -51,6 +54,28 @@ public class DemoResource {
         System.out.println(acquire);
         return String.valueOf(acquire);
     }
+
+    /**
+     * oom接口  测试服务异常
+     * @return
+     * @throws ExecutionException
+     */
+    @GetMapping("/invalid")
+    public String invalid() throws ExecutionException {
+        //漏桶
+//        Long current = System.currentTimeMillis()/unit;
+//        if(counter.get(current).incrementAndGet()>limit){
+//            return "Deny";
+//        }
+
+        for(int i=0;i<999;i++){
+            linklist.add(new byte[M]);
+        }
+        return "valid";
+    }
+
+
+
     @PostMapping("/testLong2LocalDateTimeParam")
     public void reportTask(@RequestParam(value = "startTime") LocalDateTime startTime, @RequestParam(value = "endTime") Date endTime) {
         LOGGER.error(startTime.toString());
